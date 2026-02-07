@@ -648,6 +648,118 @@
             line-height: 1.6;
         }
 
+        /* ============ References ============ */
+        .references {
+            margin-top: var(--space-8);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .references-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-5);
+        }
+        
+        .references-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-primary);
+        }
+        
+        .references-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .references-title {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .references-list {
+            list-style: none;
+            display: grid;
+            gap: var(--space-3);
+        }
+        
+        .reference-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .reference-item:hover {
+            border-color: var(--border-default);
+            background: var(--bg-hover);
+        }
+        
+        .reference-num {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: 4px;
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--text-tertiary);
+        }
+        
+        .reference-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .reference-link {
+            display: block;
+            font-size: var(--font-size-sm);
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 2px;
+        }
+        
+        .reference-link:hover {
+            text-decoration: underline;
+        }
+        
+        .reference-meta {
+            font-size: var(--font-size-xs);
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
+        
+        .reference-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .reference-tag {
+            display: inline-flex;
+            padding: 1px 6px;
+            background: rgba(9, 105, 218, 0.08);
+            color: var(--accent-primary);
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
         /* ============ Tooltip ============ */
         .has-tip {
             position: relative;
@@ -1670,6 +1782,121 @@
             <div class="footer-quote">"我们都没有活着的权利，活着的权利是自己持续跑才能争取来的。"</div>
             <div class="footer-date">2026年2月</div>
         </footer>
+
+        <!-- References -->
+        <section class="references">
+            <div class="references-header">
+                <div class="references-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                </div>
+                <h3 class="references-title">参考资料</h3>
+            </div>
+            <ul class="references-list">
+                <li class="reference-item">
+                    <span class="reference-num">1</span>
+                    <div class="reference-content">
+                        <a href="https://www.xiaoyuzhoufm.com/episode/67c3d80fb0167b8db9e3ec0f" target="_blank" class="reference-link">对Manus创始人肖弘的3小时访谈：世界不是线性外推</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">张小珺Jùn｜商业访谈录 · 小宇宙</span>
+                            <span class="reference-tag">播客</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">2</span>
+                    <div class="reference-content">
+                        <a href="https://limboy.me/docs/9a825l1ac4743b0" target="_blank" class="reference-link">Manus 决定出售前最后的访谈 - 季逸超深度访谈分析</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">Limboy · 2026年1月</span>
+                            <span class="reference-tag">分析</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">3</span>
+                    <div class="reference-content">
+                        <a href="https://zhuanlan.zhihu.com/p/1999804779141030200" target="_blank" class="reference-link">「从夯到拉」2026年AI编程工具全景测评</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">知乎专栏 · 2026年1月</span>
+                            <span class="reference-tag">测评</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">4</span>
+                    <div class="reference-content">
+                        <a href="https://pdf.dfcfw.com/pdf/H3_AP202502171643161300_1.pdf" target="_blank" class="reference-link">AI 编程，未来已来 - 券商研究报告</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">东方财富 · 2025年2月</span>
+                            <span class="reference-tag">研报</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">5</span>
+                    <div class="reference-content">
+                        <a href="https://finance.sina.com.cn/roll/2025-05-30/doc-ineyixvc7702315.shtml" target="_blank" class="reference-link">字节力推自家AI编程工具Trae，员工为何不买账？</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">新浪财经 · 2025年5月</span>
+                            <span class="reference-tag">新闻</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">6</span>
+                    <div class="reference-content">
+                        <a href="https://www.cls.cn/detail/2042960" target="_blank" class="reference-link">字节发最新内部邮件：将禁用Cursor等第三方AI开发软件</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">财联社 · 2025年5月</span>
+                            <span class="reference-tag">新闻</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">7</span>
+                    <div class="reference-content">
+                        <a href="https://zhuanlan.zhihu.com/p/708820713" target="_blank" class="reference-link">四大国产AI编程助手横向浅评：文心快码、通义灵码、腾讯云AI代码助手</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">知乎专栏 · 2024年7月</span>
+                            <span class="reference-tag">评测</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">8</span>
+                    <div class="reference-content">
+                        <a href="https://wallstreetcn.com/articles/3740760" target="_blank" class="reference-link">AI模型层可能毫无利润可言 - AI应用边际成本分析</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">华尔街见闻 · 2025年2月</span>
+                            <span class="reference-tag">分析</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">9</span>
+                    <div class="reference-content">
+                        <a href="https://hub.baai.ac.cn/view/49848" target="_blank" class="reference-link">Vibe Coding成AI主战场：22个明星玩家值得关注</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">智源社区 · 2025年10月</span>
+                            <span class="reference-tag">分析</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="reference-item">
+                    <span class="reference-num">10</span>
+                    <div class="reference-content">
+                        <a href="https://juejin.cn/post/7547326488434688052" target="_blank" class="reference-link">阿里Qoder重磅登场：AI编程平台新王者</a>
+                        <div class="reference-meta">
+                            <span class="reference-source">掘金 · 2025年9月</span>
+                            <span class="reference-tag">评测</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
         <!-- Disclaimer -->
         <div class="disclaimer">
