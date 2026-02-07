@@ -1,0 +1,104 @@
+/* =================================
+   Tooltip Component
+   ================================= */
+
+.has-tip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+}
+
+.tip-box {
+    position: fixed;
+    width: 360px;
+    max-width: 90vw;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: var(--spacing-lg);
+    background: rgba(30, 30, 50, 0.95);
+    backdrop-filter: blur(var(--blur-amount-lg));
+    -webkit-backdrop-filter: blur(var(--blur-amount-lg));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    z-index: var(--z-tooltip);
+    font-size: var(--font-size-sm);
+    line-height: 1.7;
+}
+
+.has-tip:hover .tip-box {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.tip-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.tip-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.tip-section:last-child { 
+    margin-bottom: 0; 
+}
+
+.tip-label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-blue);
+    margin-bottom: var(--spacing-xs);
+}
+
+.tip-text {
+    color: var(--text-secondary);
+}
+
+.tip-list {
+    color: var(--text-secondary);
+}
+
+.tip-list li {
+    padding: var(--spacing-xs) 0;
+    padding-left: var(--spacing-md);
+    position: relative;
+}
+
+.tip-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+}
+
+/* Scrollbar for tooltip */
+.tip-box::-webkit-scrollbar { 
+    width: 5px; 
+}
+
+.tip-box::-webkit-scrollbar-thumb { 
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 3px; 
+}
+
+/* Hide tooltip on mobile */
+@media (max-width: 768px) {
+    .tip-box { 
+        display: none !important; 
+    }
+}

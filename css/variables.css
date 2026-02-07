@@ -1,0 +1,75 @@
+/* =================================
+   CSS Variables - Design Tokens
+   ================================= */
+:root {
+    /* Colors - Glassmorphism Palette */
+    --color-bg-gradient-start: #667eea;
+    --color-bg-gradient-end: #764ba2;
+    --color-bg-mesh-1: #f093fb;
+    --color-bg-mesh-2: #f5576c;
+    --color-bg-mesh-3: #4facfe;
+    
+    /* Glass Effect Colors */
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-bg-light: rgba(255, 255, 255, 0.25);
+    --glass-bg-dark: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-muted: rgba(255, 255, 255, 0.6);
+    
+    /* Accent Colors */
+    --accent-green: #10b981;
+    --accent-green-light: rgba(16, 185, 129, 0.2);
+    --accent-red: #ef4444;
+    --accent-red-light: rgba(239, 68, 68, 0.2);
+    --accent-orange: #f59e0b;
+    --accent-orange-light: rgba(245, 158, 11, 0.2);
+    --accent-blue: #3b82f6;
+    --accent-blue-light: rgba(59, 130, 246, 0.2);
+    
+    /* Glass Effect */
+    --blur-amount: 20px;
+    --blur-amount-sm: 10px;
+    --blur-amount-lg: 30px;
+    
+    /* Borders */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-2xl: 48px;
+    --spacing-3xl: 64px;
+    
+    /* Typography */
+    --font-family: 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 13px;
+    --font-size-base: 15px;
+    --font-size-lg: 17px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 32px;
+    --font-size-4xl: 40px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 400ms ease;
+    
+    /* Z-index */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-modal: 500;
+    --z-tooltip: 1000;
+}
