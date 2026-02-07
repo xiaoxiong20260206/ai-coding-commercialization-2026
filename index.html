@@ -440,6 +440,77 @@
             color: var(--text-muted);
         }
 
+        /* Tooltip Styles */
+        .has-tip {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dashed var(--accent-blue);
+        }
+        .tip-box {
+            position: fixed;
+            width: 360px;
+            max-width: 90vw;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 20px 24px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.15s, visibility 0.15s;
+            z-index: 9999;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .has-tip:hover .tip-box {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .tip-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .tip-section {
+            margin-bottom: 12px;
+        }
+        .tip-section:last-child { margin-bottom: 0; }
+        .tip-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-blue);
+            margin-bottom: 6px;
+        }
+        .tip-text {
+            color: var(--text-secondary);
+        }
+        .tip-list {
+            list-style: none;
+            color: var(--text-secondary);
+        }
+        .tip-list li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .tip-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+        .tip-box::-webkit-scrollbar { width: 5px; }
+        .tip-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container { padding: 32px 20px 60px; }
@@ -449,6 +520,7 @@
             .conclusion-grid { grid-template-columns: repeat(2, 1fr); }
             .legend { flex-wrap: wrap; justify-content: center; }
             .section { padding: 24px; }
+            .tip-box { display: none !important; }
         }
     </style>
 </head>
@@ -729,8 +801,58 @@
                             <td><strong>Trae</strong></td>
                             <td>字节</td>
                             <td><span class="tag tag-red">免费</span></td>
-                            <td>SOLO模式、多模型支持</td>
-                            <td>2C为主、变现待验证</td>
+                            <td>
+                                <span class="has-tip">
+                                    SOLO模式、多模型支持
+                                    <div class="tip-box">
+                                        <div class="tip-title">Trae 核心优势详解</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">产品特色</div>
+                                            <ul class="tip-list">
+                                                <li>SOLO模式：完整项目自动化开发</li>
+                                                <li>国际版同步发布，全球化布局</li>
+                                                <li>IDE形态，类Cursor体验</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">模型支持</div>
+                                            <ul class="tip-list">
+                                                <li>豆包自研模型</li>
+                                                <li>Google Gemini模型</li>
+                                                <li>OpenAI GPT模型</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">用户规模</div>
+                                            <div class="tip-text">600万注册用户，国内市场份额领先</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="has-tip">
+                                    2C为主、变现待验证
+                                    <div class="tip-box">
+                                        <div class="tip-title">Trae 问题分析</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">商业模式</div>
+                                            <ul class="tip-list">
+                                                <li>2C为主、2B为辅策略</li>
+                                                <li>C端600万用户但完全免费</li>
+                                                <li>B端探索付费场景</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">变现困境</div>
+                                            <ul class="tip-list">
+                                                <li>C端免费培养"白嫖"心智</li>
+                                                <li>转付费将面临用户流失</li>
+                                                <li>免费用户每月烧钱</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
                             <td><span class="tag tag-orange">中</span></td>
                             <td>海外先验证付费</td>
                         </tr>
@@ -738,8 +860,49 @@
                             <td><strong>灵码+Qoder</strong></td>
                             <td>阿里</td>
                             <td><span class="tag tag-orange">限免</span></td>
-                            <td>自研Qoder、2B+2C双轨</td>
-                            <td>客单价被卷至40万以下</td>
+                            <td>
+                                <span class="has-tip">
+                                    自研Qoder、2B+2C双轨
+                                    <div class="tip-box">
+                                        <div class="tip-title">灵码+Qoder 核心优势详解</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">模型自研</div>
+                                            <ul class="tip-list">
+                                                <li>Qwen-Coder-Qoder自研编程模型</li>
+                                                <li>4800B参数规模</li>
+                                                <li>编程能力业界领先</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">双轨策略</div>
+                                            <ul class="tip-list">
+                                                <li><strong>通义灵码</strong>：面向2B企业市场</li>
+                                                <li><strong>Qoder</strong>：面向2C个人开发者</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="has-tip">
+                                    客单价被卷至40万以下
+                                    <div class="tip-box">
+                                        <div class="tip-title">灵码+Qoder 问题分析</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">B端价格战</div>
+                                            <ul class="tip-list">
+                                                <li>企业客单价被卷至40万以下</li>
+                                                <li>竞争激烈，利润空间被压缩</li>
+                                                <li>难以覆盖AI推理成本</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">优势</div>
+                                            <div class="tip-text">有明确B端付费场景，相对更健康</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
                             <td><span class="tag tag-green">低</span></td>
                             <td>专注高付费行业</td>
                         </tr>
@@ -747,8 +910,46 @@
                             <td><strong>Comate</strong></td>
                             <td>百度</td>
                             <td><span class="tag tag-blue">59元/月</span></td>
-                            <td>多模态多智能体</td>
-                            <td>技术驱动非用户驱动</td>
+                            <td>
+                                <span class="has-tip">
+                                    多模态多智能体
+                                    <div class="tip-box">
+                                        <div class="tip-title">Comate 核心优势详解</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">技术能力</div>
+                                            <ul class="tip-list">
+                                                <li>多模态：支持图像、语音等输入</li>
+                                                <li>多智能体：任务分解协作</li>
+                                                <li>深度集成文心大模型</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">定价</div>
+                                            <div class="tip-text">59元/月，唯一有明确定价的产品</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="has-tip">
+                                    技术驱动非用户驱动
+                                    <div class="tip-box">
+                                        <div class="tip-title">Comate 问题分析</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">产品方向</div>
+                                            <ul class="tip-list">
+                                                <li>过于强调技术能力展示</li>
+                                                <li>缺乏对用户真实痛点的洞察</li>
+                                                <li>PMF不够清晰</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">市场表现</div>
+                                            <div class="tip-text">用户规模和市场声量偏弱</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
                             <td><span class="tag tag-orange">中</span></td>
                             <td>找到高频场景</td>
                         </tr>
@@ -756,8 +957,46 @@
                             <td><strong>CodeBuddy</strong></td>
                             <td>腾讯</td>
                             <td><span class="tag tag-orange">限免</span></td>
-                            <td>三形态最完整</td>
-                            <td>变现路径不清晰</td>
+                            <td>
+                                <span class="has-tip">
+                                    三形态最完整
+                                    <div class="tip-box">
+                                        <div class="tip-title">CodeBuddy 核心优势详解</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">产品形态</div>
+                                            <ul class="tip-list">
+                                                <li>IDE插件形态</li>
+                                                <li>独立IDE形态</li>
+                                                <li>Web/微信小程序形态</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">生态优势</div>
+                                            <div class="tip-text">微信小程序开发场景具有天然优势</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="has-tip">
+                                    变现路径不清晰
+                                    <div class="tip-box">
+                                        <div class="tip-title">CodeBuddy 问题分析</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">商业模式</div>
+                                            <ul class="tip-list">
+                                                <li>限时免费，未来定价未知</li>
+                                                <li>PMF验证不充分</li>
+                                                <li>变现路径待探索</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">潜力</div>
+                                            <div class="tip-text">微信生态优势明显但变现模式待验证</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
                             <td><span class="tag tag-green">低</span></td>
                             <td>深耕微信生态</td>
                         </tr>
@@ -765,8 +1004,46 @@
                             <td><strong>CatPaw</strong></td>
                             <td>美团</td>
                             <td><span class="tag tag-blue">公测</span></td>
-                            <td>自研LongCat、95%渗透</td>
-                            <td>外部PMF未验证</td>
+                            <td>
+                                <span class="has-tip">
+                                    自研LongCat、95%渗透
+                                    <div class="tip-box">
+                                        <div class="tip-title">CatPaw 核心优势详解</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">模型自研</div>
+                                            <ul class="tip-list">
+                                                <li>LongCat自研编程模型</li>
+                                                <li>针对美团场景深度优化</li>
+                                                <li>有一定技术壁垒</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">内部验证</div>
+                                            <div class="tip-text">内部工程师95%渗透率，产品已经过大规模验证</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="has-tip">
+                                    外部PMF未验证
+                                    <div class="tip-box">
+                                        <div class="tip-title">CatPaw 问题分析</div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">后发劣势</div>
+                                            <ul class="tip-list">
+                                                <li>进入市场较晚，竞争激烈</li>
+                                                <li>品牌认知度较低</li>
+                                                <li>差异化定位不清晰</li>
+                                            </ul>
+                                        </div>
+                                        <div class="tip-section">
+                                            <div class="tip-label">PMF问题</div>
+                                            <div class="tip-text">内部PMF≠外部PMF，美团场景不代表通用场景</div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </td>
                             <td><span class="tag tag-orange">中</span></td>
                             <td>明确外部PMF</td>
                         </tr>
@@ -969,5 +1246,34 @@
             <div class="footer-date">2026年2月</div>
         </footer>
     </div>
+
+    <script>
+        // Tooltip positioning
+        document.querySelectorAll('.has-tip').forEach(el => {
+            const tip = el.querySelector('.tip-box');
+            if (!tip) return;
+            
+            el.addEventListener('mouseenter', () => {
+                const rect = el.getBoundingClientRect();
+                const tipWidth = 360;
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                let left = rect.left + rect.width / 2 - tipWidth / 2;
+                if (left < 10) left = 10;
+                if (left + tipWidth > viewportWidth - 10) left = viewportWidth - tipWidth - 10;
+                
+                tip.style.left = left + 'px';
+                
+                if (rect.top > 420) {
+                    tip.style.bottom = (viewportHeight - rect.top + 10) + 'px';
+                    tip.style.top = 'auto';
+                } else {
+                    tip.style.top = (rect.bottom + 10) + 'px';
+                    tip.style.bottom = 'auto';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
