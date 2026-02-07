@@ -733,8 +733,137 @@
             .tip-box { 
                 display: none !important; 
             }
+            .toc {
+                display: none;
+            }
+            .toc-toggle {
+                display: flex;
+            }
+            .toc-mobile {
+                display: block;
+            }
         }
-    </style>
+
+        /* ============ Table of Contents ============ */
+        .toc-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+        }
+        
+        .toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4) var(--space-5);
+            background: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        
+        .toc-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-secondary);
+        }
+        
+        .toc-title-icon {
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toc-title-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-tertiary);
+        }
+        
+        .toc-count {
+            font-size: var(--font-size-xs);
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+        
+        .toc-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border-subtle);
+            list-style: none;
+        }
+        
+        .toc-item {
+            background: var(--bg-card);
+        }
+        
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-4) var(--space-5);
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            height: 100%;
+        }
+        
+        .toc-link:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+        
+        .toc-link:hover .toc-num {
+            background: var(--accent-primary);
+            color: #fff;
+        }
+        
+        .toc-num {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-subtle);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            color: var(--text-tertiary);
+            flex-shrink: 0;
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-text {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        /* Special items */
+        .toc-item.highlight .toc-num {
+            background: linear-gradient(135deg, var(--accent-success) 0%, #2da44e 100%);
+            color: #fff;
+        }
+        
+        .toc-item.highlight .toc-link:hover .toc-num {
+            background: linear-gradient(135deg, #2da44e 0%, var(--accent-success) 100%);
+        }
+        
+        /* Responsive TOC */
+        @media (max-width: 960px) {
+            .toc-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
@@ -757,6 +886,59 @@
             </div>
         </div>
 
+        <!-- Table of Contents -->
+        <nav class="toc-wrapper">
+            <div class="toc-header">
+                <div class="toc-title">
+                    <span class="toc-title-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </span>
+                    报告目录
+                </div>
+                <span class="toc-count">5 个章节</span>
+            </div>
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="#section-1" class="toc-link">
+                        <span class="toc-num">01</span>
+                        <span class="toc-text">AI产品 vs 互联网产品</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#section-2" class="toc-link">
+                        <span class="toc-num">02</span>
+                        <span class="toc-text">关键成功要素对比</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#section-3" class="toc-link">
+                        <span class="toc-num">03</span>
+                        <span class="toc-text">五款产品诊断</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#section-4" class="toc-link">
+                        <span class="toc-num">04</span>
+                        <span class="toc-text">根本原因分析</span>
+                    </a>
+                </li>
+                <li class="toc-item">
+                    <a href="#section-5" class="toc-link">
+                        <span class="toc-num">05</span>
+                        <span class="toc-text">2026年预测与转型</span>
+                    </a>
+                </li>
+                <li class="toc-item highlight">
+                    <a href="#conclusion" class="toc-link">
+                        <span class="toc-num">✓</span>
+                        <span class="toc-text">结论与建议</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
         <!-- Stats -->
         <div class="stats-grid">
             <div class="stat-card">
@@ -778,7 +960,7 @@
         </div>
 
         <!-- Section 1 -->
-        <section class="section">
+        <section id="section-1" class="section">
             <div class="section-header">
                 <div class="section-number">01</div>
                 <h2 class="section-title">AI产品 vs 互联网产品：本质差异</h2>
@@ -858,7 +1040,7 @@
         </section>
 
         <!-- Section 2 -->
-        <section class="section">
+        <section id="section-2" class="section">
             <div class="section-header">
                 <div class="section-number">02</div>
                 <h2 class="section-title">关键成功要素对比：标杆 vs 国内产品</h2>
@@ -990,7 +1172,7 @@
         </section>
 
         <!-- Section 3 -->
-        <section class="section">
+        <section id="section-3" class="section">
             <div class="section-header">
                 <div class="section-number">03</div>
                 <h2 class="section-title">五款产品诊断：问题与建议</h2>
@@ -1266,7 +1448,7 @@
         </section>
 
         <!-- Section 4 -->
-        <section class="section">
+        <section id="section-4" class="section">
             <div class="section-header">
                 <div class="section-number">04</div>
                 <h2 class="section-title">根本原因分析</h2>
@@ -1360,7 +1542,7 @@
         </section>
 
         <!-- Section 5 -->
-        <section class="section">
+        <section id="section-5" class="section">
             <div class="section-header">
                 <div class="section-number">05</div>
                 <h2 class="section-title">2026年预测与转型机会</h2>
@@ -1431,7 +1613,7 @@
         </section>
 
         <!-- Conclusion -->
-        <div class="conclusion">
+        <div id="conclusion" class="conclusion">
             <div class="conclusion-title">结论与建议</div>
             <div class="conclusion-grid">
                 <div class="conclusion-item">
