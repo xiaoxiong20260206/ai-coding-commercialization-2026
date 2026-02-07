@@ -366,77 +366,86 @@
             border-bottom: 1px dashed rgba(59, 130, 246, 0.5);
         }
         .tooltip-content {
-            position: absolute;
-            bottom: calc(100% + 12px);
-            left: 50%;
-            transform: translateX(-50%);
-            width: 360px;
+            position: fixed;
+            width: 380px;
+            max-width: 90vw;
+            max-height: 400px;
+            overflow-y: auto;
             padding: 1.25rem 1.5rem;
-            background: #1a1a24;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #1e1e28;
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 12px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.2s ease;
-            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 9999;
             font-size: 0.9rem;
             line-height: 1.7;
             text-align: left;
         }
-        .tooltip-content::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 10px solid transparent;
-            border-top-color: #1a1a24;
-        }
         .has-tooltip:hover .tooltip-content {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
         }
         .tooltip-title {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            margin-bottom: 0.85rem;
+            margin-bottom: 1rem;
             color: #ffffff;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
         .tooltip-section {
-            margin-bottom: 0.85rem;
+            margin-bottom: 1rem;
         }
         .tooltip-section:last-child {
             margin-bottom: 0;
         }
         .tooltip-label {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: #60a5fa;
-            margin-bottom: 0.4rem;
-            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
         .tooltip-text {
-            color: #e5e5e7;
+            color: #f0f0f2;
+            font-size: 0.9rem;
         }
         .tooltip-list {
             list-style: none;
-            color: #e5e5e7;
+            color: #f0f0f2;
+            margin: 0;
+            padding: 0;
         }
         .tooltip-list li {
-            padding: 0.25rem 0;
-            padding-left: 1rem;
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
             position: relative;
+            font-size: 0.9rem;
         }
         .tooltip-list li::before {
             content: '→';
             position: absolute;
             left: 0;
             color: #60a5fa;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+        }
+        /* Scrollbar for tooltip */
+        .tooltip-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .tooltip-content::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 3px;
+        }
+        .tooltip-content::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
         }
         @media (max-width: 480px) {
             .findings-grid { grid-template-columns: 1fr; }
@@ -1445,5 +1454,39 @@
             <div class="footer-text">2026年2月</div>
         </footer>
     </div>
+
+    <script>
+        // Tooltip positioning script
+        document.querySelectorAll('.has-tooltip').forEach(el => {
+            const tooltip = el.querySelector('.tooltip-content');
+            if (!tooltip) return;
+            
+            el.addEventListener('mouseenter', (e) => {
+                const rect = el.getBoundingClientRect();
+                const tooltipRect = tooltip.getBoundingClientRect();
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+                
+                // Calculate position
+                let left = rect.left + rect.width / 2 - 190; // Center tooltip (380px / 2)
+                let top = rect.top - 10; // Above the element
+                
+                // Adjust horizontal position if overflow
+                if (left < 10) left = 10;
+                if (left + 380 > viewportWidth - 10) left = viewportWidth - 390;
+                
+                // Position tooltip
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = 'auto';
+                tooltip.style.bottom = (viewportHeight - rect.top + 10) + 'px';
+                
+                // If tooltip would go above viewport, show below
+                if (rect.top < 420) {
+                    tooltip.style.bottom = 'auto';
+                    tooltip.style.top = (rect.bottom + 10) + 'px';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
