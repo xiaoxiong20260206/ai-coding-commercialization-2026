@@ -363,24 +363,24 @@
         .has-tooltip {
             position: relative;
             cursor: help;
-            border-bottom: 1px dashed var(--text-muted);
+            border-bottom: 1px dashed rgba(59, 130, 246, 0.5);
         }
         .tooltip-content {
             position: absolute;
-            bottom: calc(100% + 10px);
+            bottom: calc(100% + 12px);
             left: 50%;
             transform: translateX(-50%);
-            width: 340px;
-            padding: 1.25rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            width: 360px;
+            padding: 1.25rem 1.5rem;
+            background: #1a1a24;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
             opacity: 0;
             visibility: hidden;
             transition: all 0.2s ease;
             z-index: 1000;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             line-height: 1.7;
             text-align: left;
         }
@@ -390,21 +390,23 @@
             top: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border: 8px solid transparent;
-            border-top-color: var(--bg-secondary);
+            border: 10px solid transparent;
+            border-top-color: #1a1a24;
         }
         .has-tooltip:hover .tooltip-content {
             opacity: 1;
             visibility: visible;
         }
         .tooltip-title {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
+            margin-bottom: 0.85rem;
+            color: #ffffff;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .tooltip-section {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
         }
         .tooltip-section:last-child {
             margin-bottom: 0;
@@ -412,27 +414,29 @@
         .tooltip-label {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 0.35rem;
+            letter-spacing: 0.08em;
+            color: #60a5fa;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
         }
         .tooltip-text {
-            color: var(--text-secondary);
+            color: #e5e5e7;
         }
         .tooltip-list {
             list-style: none;
-            color: var(--text-secondary);
+            color: #e5e5e7;
         }
         .tooltip-list li {
-            padding: 0.2rem 0;
-            padding-left: 0.85rem;
+            padding: 0.25rem 0;
+            padding-left: 1rem;
             position: relative;
         }
         .tooltip-list li::before {
-            content: '•';
+            content: '→';
             position: absolute;
             left: 0;
-            color: var(--accent-blue);
+            color: #60a5fa;
+            font-size: 0.8rem;
         }
         @media (max-width: 480px) {
             .findings-grid { grid-template-columns: 1fr; }
@@ -676,20 +680,24 @@
                             <td class="highlight-col"><span class="tag tag-green">✓ Prosumers</span></td>
                             <td>
                                 <span class="has-tooltip">
-                                    <span class="tag tag-orange">△ 2B探索</span>
+                                    <span class="tag tag-orange">△ 2C为主</span>
                                     <div class="tooltip-content">
                                         <div class="tooltip-title">Trae - PMF分析</div>
                                         <div class="tooltip-section">
-                                            <div class="tooltip-label">2C定位</div>
-                                            <div class="tooltip-text">"所有开发者的AI伙伴"——C端定位宽泛</div>
+                                            <div class="tooltip-label">核心定位</div>
+                                            <div class="tooltip-text">2C为主、2B为辅的策略</div>
                                         </div>
                                         <div class="tooltip-section">
-                                            <div class="tooltip-label">2B探索</div>
+                                            <div class="tooltip-label">2C主战场</div>
                                             <ul class="tooltip-list">
-                                                <li>开始探索企业市场</li>
-                                                <li>寻找B端付费场景</li>
-                                                <li>PMF仍在验证中</li>
+                                                <li>"所有开发者的AI伙伴"</li>
+                                                <li>600万个人开发者用户</li>
+                                                <li>SOLO模式面向独立开发</li>
                                             </ul>
+                                        </div>
+                                        <div class="tooltip-section">
+                                            <div class="tooltip-label">2B辅助</div>
+                                            <div class="tooltip-text">同时探索企业市场，寻找B端付费场景</div>
                                         </div>
                                     </div>
                                 </span>
@@ -1004,23 +1012,23 @@
                             </td>
                             <td>
                                 <span class="has-tooltip">
-                                    2B探索中、变现待验证
+                                    2C为主、变现待验证
                                     <div class="tooltip-content">
                                         <div class="tooltip-title">Trae 问题分析</div>
                                         <div class="tooltip-section">
-                                            <div class="tooltip-label">商业探索</div>
+                                            <div class="tooltip-label">商业模式</div>
                                             <ul class="tooltip-list">
-                                                <li>开始探索2B企业市场</li>
-                                                <li>寻找企业付费场景</li>
-                                                <li>PMF仍在验证中</li>
+                                                <li>2C为主、2B为辅策略</li>
+                                                <li>C端600万用户但完全免费</li>
+                                                <li>B端探索付费场景</li>
                                             </ul>
                                         </div>
                                         <div class="tooltip-section">
                                             <div class="tooltip-label">变现困境</div>
                                             <ul class="tooltip-list">
-                                                <li>C端完全免费培养"白嫖"心智</li>
+                                                <li>C端免费培养"白嫖"心智</li>
                                                 <li>转付费将面临用户流失</li>
-                                                <li>600万免费用户每月烧钱</li>
+                                                <li>免费用户每月烧钱</li>
                                             </ul>
                                         </div>
                                     </div>
