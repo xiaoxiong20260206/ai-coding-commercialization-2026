@@ -9,23 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a24;
-            --bg-card-hover: #22222e;
+            --bg-primary: #0f0f12;
+            --bg-secondary: #16161a;
+            --bg-card: #1c1c22;
             --text-primary: #f5f5f7;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
+            --text-secondary: #94949e;
+            --text-muted: #6b6b75;
             --accent-blue: #3b82f6;
             --accent-cyan: #06b6d4;
-            --accent-purple: #8b5cf6;
             --accent-green: #10b981;
             --accent-orange: #f59e0b;
             --accent-red: #ef4444;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --gradient-1: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            --gradient-3: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            --accent-purple: #8b5cf6;
+            --border-color: rgba(255, 255, 255, 0.06);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -33,790 +29,807 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            font-size: 14px;
         }
-        /* Nav */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color); padding: 0 1.5rem;
+
+        /* Report Container */
+        .report {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
         }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-        .nav-logo { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
-        .nav-logo-icon { width: 24px; height: 24px; background: var(--gradient-1); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-        .nav-links { display: flex; gap: 0.25rem; }
-        .nav-link { padding: 0.4rem 0.75rem; color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; border-radius: 6px; transition: all 0.2s; cursor: pointer; }
-        .nav-link:hover { color: var(--text-primary); background: var(--bg-card); }
-        .nav-link.active { color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
 
-        /* Hero - Compact */
-        .hero { padding: 5rem 1.5rem 2rem; text-align: center; position: relative; }
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+        /* Header */
+        .report-header {
+            text-align: center;
+            padding: 2rem 0 3rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
         }
-        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 100px; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; }
-        .hero-badge-dot { width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
-        .hero-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.3; margin-bottom: 0.75rem; }
-        .hero-subtitle { font-size: 0.95rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-
-        /* Key Insights - NEW */
-        .key-insights { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem; }
-        .key-insights-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem; text-align: center; }
-        .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
-        .insight-card {
-            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
-            padding: 1.25rem; position: relative; overflow: hidden;
+        .report-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
         }
-        .insight-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-        .insight-card.red::before { background: var(--accent-red); }
-        .insight-card.blue::before { background: var(--accent-blue); }
-        .insight-card.green::before { background: var(--accent-green); }
-        .insight-card.orange::before { background: var(--accent-orange); }
-        .insight-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-        .insight-label.red { color: var(--accent-red); }
-        .insight-label.blue { color: var(--accent-blue); }
-        .insight-label.green { color: var(--accent-green); }
-        .insight-label.orange { color: var(--accent-orange); }
-        .insight-text { font-size: 0.95rem; font-weight: 600; line-height: 1.5; }
-        .insight-detail { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5; }
+        .report-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .report-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
 
-        /* Main */
-        .main { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
-        .chapter { padding: 3rem 0; border-bottom: 1px solid var(--border-color); }
-        .chapter:last-child { border-bottom: none; }
-        .chapter-header { margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
-        .chapter-number { width: 36px; height: 36px; background: var(--gradient-1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; flex-shrink: 0; }
-        .chapter-title { font-size: 1.25rem; font-weight: 700; }
-        .chapter-desc { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        /* Executive Summary */
+        .exec-summary {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.02) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .exec-summary-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-summary-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 2px;
+        }
+        .core-insight {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .core-insight em {
+            color: var(--accent-red);
+            font-style: normal;
+        }
+        .core-insight-detail {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
 
-        /* Cards */
-        .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; }
-        .card-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .card-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+        /* Key Findings Grid */
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .finding-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        .finding-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .finding-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .finding-value.red { color: var(--accent-red); }
+        .finding-value.green { color: var(--accent-green); }
+        .finding-value.orange { color: var(--accent-orange); }
+        .finding-value.blue { color: var(--accent-blue); }
+        .finding-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 2.5rem;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
 
         /* Tables */
-        .table-wrap { overflow-x: auto; margin: 1rem 0; }
-        .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        .comparison-table th, .comparison-table td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color); }
-        .comparison-table th { background: var(--bg-secondary); font-weight: 600; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; }
-        .comparison-table th:first-child { border-radius: 8px 0 0 0; }
-        .comparison-table th:last-child { border-radius: 0 8px 0 0; }
-        .comparison-table td:first-child { font-weight: 500; }
-
-        /* Grid */
-        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
-
-        /* Flow */
-        .flow-diagram { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; margin: 1rem 0; }
-        .flow-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-align: center; color: var(--text-secondary); }
-        .flow-steps { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.4rem; }
-        .flow-step { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.8rem; }
-        .flow-arrow { color: var(--text-muted); font-size: 1rem; }
-
-        /* Quote */
-        .quote-block { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%); border-left: 3px solid var(--accent-blue); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1.5rem 0; }
-        .quote-text { font-size: 0.9rem; font-style: italic; line-height: 1.6; }
-        .quote-author { margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted); }
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        th, td {
+            padding: 0.6rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+        td:first-child { font-weight: 500; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .highlight-row td { background: rgba(16, 185, 129, 0.05); }
+        .highlight-col { background: rgba(16, 185, 129, 0.08) !important; }
 
         /* Tags */
-        .tag { display: inline-flex; padding: 0.2rem 0.5rem; border-radius: 100px; font-size: 0.7rem; font-weight: 500; }
-        .tag-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .tag {
+            display: inline-flex;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 500;
+        }
         .tag-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
         .tag-orange { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
         .tag-red { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .tag-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
         .tag-purple { background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
-        .tag-cyan { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
 
-        /* Problem Cards */
-        .problem-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; position: relative; }
-        .problem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent-red); border-radius: 10px 10px 0 0; }
-        .problem-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent-red); }
-        .problem-desc { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.6; }
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
 
-        /* Product Cards */
-        .product-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1rem; }
-        .product-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
-        .product-name { font-size: 0.95rem; font-weight: 600; }
-        .product-company { font-size: 0.75rem; color: var(--text-muted); }
-        .product-risk { padding: 0.15rem 0.5rem; border-radius: 100px; font-size: 0.65rem; font-weight: 500; }
-        .risk-low { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-        .risk-medium { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-        .product-issue { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5; }
-        .product-suggestion { margin-top: 0.75rem; padding: 0.75rem; background: rgba(59, 130, 246, 0.1); border-radius: 6px; font-size: 0.75rem; color: var(--accent-blue); }
+        /* Comparison Box */
+        .compare-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.25rem;
+        }
+        .compare-box-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .compare-box-title.red { color: var(--accent-red); }
+        .compare-box-title.green { color: var(--accent-green); }
+        .compare-list {
+            list-style: none;
+            font-size: 0.8rem;
+        }
+        .compare-list li {
+            padding: 0.3rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .compare-list li::before {
+            content: '→';
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
 
-        /* Cause */
-        .cause-item { display: flex; gap: 1rem; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; margin-bottom: 0.75rem; }
-        .cause-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .cause-content h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .cause-content p { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5; }
+        /* Quote */
+        .quote {
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent-blue);
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .quote-text {
+            font-size: 0.9rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+        .quote-author {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
 
-        /* Predictions */
-        .prediction-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .prediction-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; }
-        .prediction-card.optimistic { border-color: rgba(16, 185, 129, 0.3); }
-        .prediction-card.pessimistic { border-color: rgba(239, 68, 68, 0.3); }
-        .prediction-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
-        .prediction-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-        .prediction-label { font-size: 0.85rem; font-weight: 600; }
-        .prediction-list { list-style: none; font-size: 0.8rem; }
-        .prediction-list li { padding: 0.3rem 0; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.4rem; }
-        .prediction-list li::before { content: '→'; color: var(--text-muted); }
-
-        /* Success Case */
-        .success-case { background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 10px; padding: 1.5rem; margin: 1rem 0; }
-        .success-case-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-        .success-case-logo { width: 40px; height: 40px; background: var(--gradient-3); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; }
-        .success-case-title { font-size: 1.1rem; font-weight: 600; }
-        .success-case-subtitle { color: var(--text-secondary); font-size: 0.75rem; }
-        .success-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
-        .success-metric { text-align: center; padding: 0.75rem 0.5rem; background: rgba(0, 0, 0, 0.2); border-radius: 8px; }
-        .success-metric-value { font-size: 1.1rem; font-weight: 700; color: var(--accent-green); }
-        .success-metric-label { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.15rem; }
-
-        /* Highlight Box */
-        .highlight-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; }
-        .highlight-box h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
-        .highlight-box ul { list-style: none; color: var(--text-secondary); font-size: 0.8rem; }
-        .highlight-box li { padding: 0.25rem 0; padding-left: 1rem; position: relative; }
-        .highlight-box li::before { content: '•'; position: absolute; left: 0; color: var(--accent-blue); }
-
-        /* Section Divider */
-        .section-divider { display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0; }
-        .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
-        .section-divider span { color: var(--text-muted); font-size: 0.75rem; font-weight: 500; }
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .conclusion-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .conclusion-item {
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .conclusion-item-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+        .conclusion-item-value {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
 
         /* Footer */
-        .footer { padding: 2rem 1.5rem; text-align: center; border-top: 1px solid var(--border-color); margin-top: 2rem; }
-        .footer-quote { max-width: 500px; margin: 0 auto 1rem; font-size: 1rem; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
-        .footer-text { color: var(--text-muted); font-size: 0.8rem; }
+        .report-footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+        .footer-quote {
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Inline Stats */
+        .inline-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            justify-content: center;
+        }
+        .inline-stat {
+            text-align: center;
+        }
+        .inline-stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .inline-stat-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { padding: 4.5rem 1rem 1.5rem; }
-            .hero-title { font-size: 1.5rem; }
-            .insights-grid { grid-template-columns: 1fr; }
-            .success-metrics { grid-template-columns: repeat(2, 1fr); }
-            .flow-steps { flex-direction: column; }
-            .flow-arrow { transform: rotate(90deg); }
+            .findings-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+            .report-title { font-size: 1.4rem; }
         }
-
-        /* Scroll Animation */
-        .fade-in { opacity: 0; transform: translateY(15px); transition: opacity 0.5s ease, transform 0.5s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-        ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 3px; }
+        @media (max-width: 480px) {
+            .findings-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <!-- Nav -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <div class="nav-logo-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                AI Coding商业化分析
-            </div>
-            <div class="nav-links">
-                <a href="#insights" class="nav-link">核心结论</a>
-                <a href="#chapter1" class="nav-link">理想路径</a>
-                <a href="#chapter2" class="nav-link">致命问题</a>
-                <a href="#chapter3" class="nav-link">根本原因</a>
-                <a href="#chapter4" class="nav-link">2026预测</a>
-            </div>
-        </div>
-    </nav>
+    <div class="report">
+        <!-- Header -->
+        <header class="report-header">
+            <div class="report-badge">2026年2月 · 深度分析报告</div>
+            <h1 class="report-title">AI产品商业化路径与国内AI Coding产品问题分析</h1>
+            <p class="report-subtitle">基于AI产品商业化规律，诊断国内五款头部AI Coding产品的根本性问题</p>
+        </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                2026年2月 · 深度分析
+        <!-- Executive Summary -->
+        <div class="exec-summary">
+            <div class="exec-summary-title">核心发现 · Executive Summary</div>
+            <div class="core-insight">
+                国内大厂用<em>互联网思维</em>做AI产品，这是一道巨大的<em>认知鸿沟</em>
             </div>
-            <h1 class="hero-title">AI产品商业化路径与<br>国内AI Coding产品问题分析</h1>
-        </div>
-    </section>
-
-    <!-- Key Insights - Core Conclusions -->
-    <section id="insights" class="key-insights">
-        <!-- Core Problem Highlight -->
-        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%); border: 2px solid rgba(239, 68, 68, 0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; text-align: center;">
-            <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-red); margin-bottom: 0.5rem;">根本原因 · 认知鸿沟</div>
-            <div style="font-size: 1.5rem; font-weight: 700; line-height: 1.4; margin-bottom: 0.5rem;">用<span style="color: var(--accent-red);">互联网思维</span>做<span style="color: var(--accent-blue);">AI产品</span></div>
-            <div style="color: var(--text-secondary); font-size: 0.9rem; max-width: 600px; margin: 0 auto;">这是一道巨大的认知鸿沟。互联网产品边际成本趋零，可以"免费获客→规模→变现"；但AI产品边际成本线性增长，免费用户越多亏损越大。</div>
-        </div>
-
-        <div class="key-insights-title">核心结论 · 一图读懂全文</div>
-        <div class="insights-grid">
-            <div class="insight-card red">
-                <div class="insight-label red">核心问题</div>
-                <div class="insight-text">AI产品≠互联网产品，边际成本线性增长，免费模式不可持续</div>
-                <div class="insight-detail">国内大厂用"免费获客→规模→变现"的互联网思维做AI产品，但AI的边际成本是真金白银，免费用户越多亏损越大。</div>
-            </div>
-            <div class="insight-card blue">
-                <div class="insight-label blue">正确指标</div>
-                <div class="insight-text">追求Agent Hours而非DAU，高价值用户比规模更重要</div>
-                <div class="insight-detail">Manus单用户月付几千美金，Trae有600万免费用户却无法变现。正确指标是任务完成率和单用户价值，而非用户数。</div>
-            </div>
-            <div class="insight-card orange">
-                <div class="insight-label orange">行业困境</div>
-                <div class="insight-text">五大产品全员免费战，囚徒困境下无人敢先收费</div>
-                <div class="insight-detail">Trae、通义灵码+Qoder、Comate、CodeBuddy、CatPaw都在打免费战。大厂现金流支撑亏损，免费阻止对手盈利，形成恶性循环。</div>
-            </div>
-            <div class="insight-card green">
-                <div class="insight-label green">2026预测</div>
-                <div class="insight-text">市场分化但无赢家通吃，年底仍难有一家盈利</div>
-                <div class="insight-detail">通义灵码+Qoder凭自研模型占B端、CodeBuddy占微信生态。但客单价被卷到40万以下难覆盖成本，盈利遥遥无期。</div>
+            <div class="core-insight-detail">
+                互联网产品边际成本趋零，可以"免费获客→规模→变现"；但AI产品边际成本随用户线性增长，每多一个免费用户就多一份亏损。
+                国内五款头部AI Coding产品（Trae、通义灵码+Qoder、Comate、CodeBuddy、CatPaw）全部采用免费战策略，陷入囚徒困境，至今无一实现盈利。
             </div>
         </div>
 
-        <!-- Quick Comparison -->
-        <div class="table-wrap" style="margin-top: 1.5rem;">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>产品</th>
-                        <th>公司</th>
-                        <th>定价</th>
-                        <th>核心优势</th>
-                        <th>致命问题</th>
-                        <th>风险</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Trae</td>
-                        <td>字节</td>
-                        <td><span class="tag tag-red">免费</span></td>
-                        <td>SOLO模式、600万用户</td>
-                        <td>模型非自研、无变现路径</td>
-                        <td><span class="tag tag-orange">中</span></td>
-                    </tr>
-                    <tr>
-                        <td>通义灵码+Qoder</td>
-                        <td>阿里</td>
-                        <td><span class="tag tag-orange">限免</span></td>
-                        <td>自研模型、Quest自主编程</td>
-                        <td>B端客单价被卷</td>
-                        <td><span class="tag tag-green">低</span></td>
-                    </tr>
-                    <tr>
-                        <td>Comate</td>
-                        <td>百度</td>
-                        <td><span class="tag tag-blue">59元/月</span></td>
-                        <td>多模态多智能体</td>
-                        <td>技术驱动非用户驱动</td>
-                        <td><span class="tag tag-orange">中</span></td>
-                    </tr>
-                    <tr>
-                        <td>CodeBuddy</td>
-                        <td>腾讯</td>
-                        <td><span class="tag tag-orange">限免</span></td>
-                        <td>三形态（插件+IDE+CLI）</td>
-                        <td>变现路径不清晰</td>
-                        <td><span class="tag tag-green">低</span></td>
-                    </tr>
-                    <tr>
-                        <td>CatPaw</td>
-                        <td>美团</td>
-                        <td><span class="tag tag-blue">公测</span></td>
-                        <td>LongCat自研模型</td>
-                        <td>后发、外部PMF未验证</td>
-                        <td><span class="tag tag-orange">中</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Key Findings -->
+        <div class="findings-grid">
+            <div class="finding-card">
+                <div class="finding-label">核心差异</div>
+                <div class="finding-value red">100:1</div>
+                <div class="finding-desc">Agent vs Chatbot Token消耗比</div>
+            </div>
+            <div class="finding-card">
+                <div class="finding-label">诊断产品</div>
+                <div class="finding-value blue">5款</div>
+                <div class="finding-desc">国内大厂头部AI Coding产品</div>
+            </div>
+            <div class="finding-card">
+                <div class="finding-label">达标率</div>
+                <div class="finding-value orange">25%</div>
+                <div class="finding-desc">关键成功要素平均达标率</div>
+            </div>
+            <div class="finding-card">
+                <div class="finding-label">盈利产品</div>
+                <div class="finding-value red">0/5</div>
+                <div class="finding-desc">实现盈亏平衡的产品数量</div>
+            </div>
         </div>
-    </section>
 
-    <!-- Main Content -->
-    <main class="main">
-        <!-- Chapter 1 -->
-        <section id="chapter1" class="chapter fade-in">
-            <div class="chapter-header">
-                <div class="chapter-number">01</div>
-                <div>
-                    <h2 class="chapter-title">AI产品的理想商业化路径</h2>
-                    <p class="chapter-desc">AI产品与互联网产品是完全不同的生物</p>
-                </div>
+        <!-- Section 1: AI vs Internet Products -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">AI产品 vs 互联网产品：本质差异</h2>
             </div>
 
-            <div class="table-wrap">
-                <table class="comparison-table">
+            <div class="table-container">
+                <table>
                     <thead>
-                        <tr><th>维度</th><th>传统互联网产品</th><th>AI产品</th></tr>
+                        <tr>
+                            <th>维度</th>
+                            <th>传统互联网产品</th>
+                            <th>AI产品</th>
+                            <th>影响</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr><td>边际成本</td><td>趋近于零</td><td><span class="tag tag-red">线性增长</span></td></tr>
-                        <tr><td>商业类比</td><td>软件/平台</td><td><span class="tag tag-orange">制造业</span></td></tr>
-                        <tr><td>核心指标</td><td>DAU / MAU</td><td><span class="tag tag-blue">Agent Hours</span></td></tr>
-                        <tr><td>用户策略</td><td>追求海量用户</td><td><span class="tag tag-purple">高价值用户</span></td></tr>
-                        <tr><td>变现逻辑</td><td>流量→广告</td><td><span class="tag tag-green">价值→直接付费</span></td></tr>
-                        <tr><td>免费模式</td><td>可行</td><td><span class="tag tag-red">不可持续</span></td></tr>
+                        <tr>
+                            <td>边际成本</td>
+                            <td>趋近于零</td>
+                            <td><span class="tag tag-red">线性增长</span></td>
+                            <td>免费模式不可持续</td>
+                        </tr>
+                        <tr>
+                            <td>商业类比</td>
+                            <td>软件/媒体/平台</td>
+                            <td><span class="tag tag-orange">制造业</span></td>
+                            <td>需要精细化成本控制</td>
+                        </tr>
+                        <tr>
+                            <td>核心指标</td>
+                            <td>DAU / MAU</td>
+                            <td><span class="tag tag-blue">Agent Hours / 任务完成率</span></td>
+                            <td>用户规模≠商业价值</td>
+                        </tr>
+                        <tr>
+                            <td>用户策略</td>
+                            <td>追求海量用户</td>
+                            <td><span class="tag tag-purple">专注高价值用户</span></td>
+                            <td>质量优先于数量</td>
+                        </tr>
+                        <tr>
+                            <td>变现逻辑</td>
+                            <td>流量→广告/增值服务</td>
+                            <td><span class="tag tag-green">价值交付→直接付费</span></td>
+                            <td>Day1就要考虑盈利</td>
+                        </tr>
+                        <tr>
+                            <td>护城河</td>
+                            <td>网络效应、用户关系链</td>
+                            <td>数据飞轮、模型能力</td>
+                            <td>不会出现赢者通吃</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="grid-2" style="margin-top: 1rem;">
-                <div class="flow-diagram">
-                    <div class="flow-title">传统互联网路径</div>
-                    <div class="flow-steps">
-                        <div class="flow-step">免费获客</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-step">规模扩张</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-step">垄断变现</div>
-                    </div>
+            <div class="two-col">
+                <div class="compare-box">
+                    <div class="compare-box-title red">❌ 互联网产品路径（不适用于AI）</div>
+                    <ul class="compare-list">
+                        <li>免费获客，快速扩张用户规模</li>
+                        <li>烧钱抢市场，追求赢者通吃</li>
+                        <li>规模化后通过广告或增值服务变现</li>
+                        <li>边际成本趋零，规模即壁垒</li>
+                    </ul>
                 </div>
-                <div class="flow-diagram" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);">
-                    <div class="flow-title" style="color: var(--accent-green);">AI产品正确路径</div>
-                    <div class="flow-steps">
-                        <div class="flow-step" style="border-color: rgba(16, 185, 129, 0.3);">找到PMF</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-step" style="border-color: rgba(16, 185, 129, 0.3);">直接付费</div>
-                        <span class="flow-arrow">→</span>
-                        <div class="flow-step" style="border-color: rgba(16, 185, 129, 0.3);">数据飞轮</div>
-                    </div>
+                <div class="compare-box">
+                    <div class="compare-box-title green">✓ AI产品正确路径</div>
+                    <ul class="compare-list">
+                        <li>先找PMF，明确谁愿意为什么付费</li>
+                        <li>Day1设计可持续的单位经济模型</li>
+                        <li>专注高价值用户，直接收费</li>
+                        <li>用户反馈形成数据飞轮</li>
+                    </ul>
                 </div>
-            </div>
-
-            <!-- Success Case -->
-            <div class="success-case">
-                <div class="success-case-header">
-                    <div class="success-case-logo">M</div>
-                    <div>
-                        <div class="success-case-title">成功案例：Manus</div>
-                        <div class="success-case-subtitle">通用Agent · 2025年3月发布</div>
-                    </div>
-                </div>
-                <div class="success-metrics">
-                    <div class="success-metric">
-                        <div class="success-metric-value">Top 5</div>
-                        <div class="success-metric-label">全球Token消耗</div>
-                    </div>
-                    <div class="success-metric">
-                        <div class="success-metric-value">$几千</div>
-                        <div class="success-metric-label">单用户月付</div>
-                    </div>
-                    <div class="success-metric">
-                        <div class="success-metric-value">$1200万</div>
-                        <div class="success-metric-label">Monica ARR</div>
-                    </div>
-                    <div class="success-metric">
-                        <div class="success-metric-value">盈亏平衡</div>
-                        <div class="success-metric-label">快速实现</div>
-                    </div>
-                </div>
-                <div class="grid-2">
-                    <div class="highlight-box">
-                        <h4>核心做法</h4>
-                        <ul>
-                            <li>追求Agent Hours而非DAU</li>
-                            <li>高价值用户定位（Prosumers）</li>
-                            <li>永远使用最好的模型组合</li>
-                        </ul>
-                    </div>
-                    <div class="highlight-box">
-                        <h4>关键洞察</h4>
-                        <ul>
-                            <li>AI成本像制造业线性增长</li>
-                            <li>买模型彩票不靠谱</li>
-                            <li>没有活着的权利，持续跑</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quote-block">
-                <p class="quote-text">"全世界都在帮我们训模型，但我们没有掏钱去砸，而是通过为用户创造价值获得影响力。"</p>
-                <p class="quote-author">—— 季逸超，Manus首席科学家</p>
             </div>
         </section>
 
-        <!-- Chapter 2 -->
-        <section id="chapter2" class="chapter fade-in">
-            <div class="chapter-header">
-                <div class="chapter-number">02</div>
-                <div>
-                    <h2 class="chapter-title">国内AI Coding产品的致命问题</h2>
-                    <p class="chapter-desc">诊断五款产品存在的根本性问题</p>
-                </div>
+        <!-- Section 2: Benchmark Comparison -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">关键成功要素对比：标杆 vs 国内产品</h2>
             </div>
 
-            <div class="grid-2">
-                <div class="problem-card">
-                    <h4 class="problem-title">1. 用互联网思维做AI产品</h4>
-                    <p class="problem-desc">套用"免费→规模→变现"逻辑，但AI边际成本是线性的。<strong>免费用户越多，亏损越大。</strong></p>
-                </div>
-                <div class="problem-card">
-                    <h4 class="problem-title">2. 追求错误的指标</h4>
-                    <p class="problem-desc">宣传600万注册、90%渗透率等DAU指标，但这些<strong>不代表商业可持续性</strong>。</p>
-                </div>
-                <div class="problem-card">
-                    <h4 class="problem-title">3. PMF模糊不清</h4>
-                    <p class="problem-desc">"所有开发者的AI伙伴"太泛。<strong>没回答：谁愿意为什么付多少钱？</strong></p>
-                </div>
-                <div class="problem-card">
-                    <h4 class="problem-title">4. 数据飞轮未形成</h4>
-                    <p class="problem-desc">内部场景≠外部场景，用户不付费数据价值存疑，<strong>内部PMF≠外部PMF</strong>。</p>
-                </div>
-            </div>
-
-            <div class="section-divider"><span>关键成功要素对比（标杆 vs 国内产品）</span></div>
-
-            <!-- Benchmark Comparison Table -->
-            <div class="table-wrap" style="margin: 1rem 0;">
-                <table class="comparison-table" style="font-size: 0.75rem;">
+            <div class="table-container">
+                <table>
                     <thead>
                         <tr>
-                            <th style="min-width: 100px;">关键成功要素</th>
-                            <th style="min-width: 120px;">达成标准</th>
-                            <th style="background: rgba(16, 185, 129, 0.15); min-width: 100px;">Manus<br><span style="font-weight: 400; font-size: 0.65rem;">(标杆)</span></th>
-                            <th style="min-width: 90px;">Trae<br><span style="font-weight: 400; font-size: 0.65rem;">字节</span></th>
-                            <th style="min-width: 100px;">灵码+Qoder<br><span style="font-weight: 400; font-size: 0.65rem;">阿里</span></th>
-                            <th style="min-width: 90px;">Comate<br><span style="font-weight: 400; font-size: 0.65rem;">百度</span></th>
-                            <th style="min-width: 90px;">CodeBuddy<br><span style="font-weight: 400; font-size: 0.65rem;">腾讯</span></th>
-                            <th style="min-width: 90px;">CatPaw<br><span style="font-weight: 400; font-size: 0.65rem;">美团</span></th>
+                            <th style="width: 15%;">关键成功要素</th>
+                            <th style="width: 20%;">达成标准</th>
+                            <th class="highlight-col" style="width: 13%;">Manus (标杆)</th>
+                            <th style="width: 10%;">Trae</th>
+                            <th style="width: 12%;">灵码+Qoder</th>
+                            <th style="width: 10%;">Comate</th>
+                            <th style="width: 10%;">CodeBuddy</th>
+                            <th style="width: 10%;">CatPaw</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>成本认知</strong></td>
-                            <td>认识到AI边际成本线性增长，非互联网模式</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ 制造业思维</span></td>
-                            <td><span class="tag tag-red">✗ 互联网思维</span></td>
-                            <td><span class="tag tag-orange">△ 部分认知</span></td>
-                            <td><span class="tag tag-red">✗ 互联网思维</span></td>
-                            <td><span class="tag tag-orange">△ 部分认知</span></td>
-                            <td><span class="tag tag-orange">△ 部分认知</span></td>
+                            <td>认识到AI边际成本线性增长</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ 制造业思维</span></td>
+                            <td><span class="tag tag-red">✗</span></td>
+                            <td><span class="tag tag-orange">△</span></td>
+                            <td><span class="tag tag-red">✗</span></td>
+                            <td><span class="tag tag-orange">△</span></td>
+                            <td><span class="tag tag-orange">△</span></td>
                         </tr>
                         <tr>
                             <td><strong>核心指标</strong></td>
-                            <td>追求Agent Hours/任务完成率，而非DAU</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ Agent Hours</span></td>
-                            <td><span class="tag tag-red">✗ 追求DAU</span></td>
-                            <td><span class="tag tag-red">✗ 追求DAU</span></td>
-                            <td><span class="tag tag-red">✗ 追求DAU</span></td>
-                            <td><span class="tag tag-red">✗ 追求DAU</span></td>
-                            <td><span class="tag tag-red">✗ 追求DAU</span></td>
+                            <td>追求Agent Hours而非DAU</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ Agent Hours</span></td>
+                            <td><span class="tag tag-red">✗ DAU</span></td>
+                            <td><span class="tag tag-red">✗ DAU</span></td>
+                            <td><span class="tag tag-red">✗ DAU</span></td>
+                            <td><span class="tag tag-red">✗ DAU</span></td>
+                            <td><span class="tag tag-red">✗ DAU</span></td>
                         </tr>
                         <tr>
                             <td><strong>PMF明确度</strong></td>
-                            <td>明确回答"谁在什么场景愿意付多少钱"</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ Prosumers</span></td>
-                            <td><span class="tag tag-red">✗ 泛开发者</span></td>
-                            <td><span class="tag tag-orange">△ B端为主</span></td>
-                            <td><span class="tag tag-red">✗ 泛开发者</span></td>
-                            <td><span class="tag tag-orange">△ 微信生态</span></td>
-                            <td><span class="tag tag-red">✗ 内部验证</span></td>
+                            <td>明确"谁愿意为什么付费"</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ Prosumers</span></td>
+                            <td><span class="tag tag-red">✗ 泛用户</span></td>
+                            <td><span class="tag tag-orange">△ B端</span></td>
+                            <td><span class="tag tag-red">✗ 泛用户</span></td>
+                            <td><span class="tag tag-orange">△ 微信</span></td>
+                            <td><span class="tag tag-red">✗ 内部</span></td>
                         </tr>
                         <tr>
                             <td><strong>定价策略</strong></td>
-                            <td>Day1设计可持续定价，收入覆盖成本</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ $几千/月</span></td>
-                            <td><span class="tag tag-red">✗ 完全免费</span></td>
-                            <td><span class="tag tag-orange">△ 限时免费</span></td>
-                            <td><span class="tag tag-orange">△ 59元/月</span></td>
-                            <td><span class="tag tag-red">✗ 限时免费</span></td>
-                            <td><span class="tag tag-red">✗ 公测免费</span></td>
+                            <td>Day1设计可持续定价</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ $几千/月</span></td>
+                            <td><span class="tag tag-red">✗ 免费</span></td>
+                            <td><span class="tag tag-orange">△ 限免</span></td>
+                            <td><span class="tag tag-orange">△ 59元</span></td>
+                            <td><span class="tag tag-red">✗ 免费</span></td>
+                            <td><span class="tag tag-red">✗ 免费</span></td>
                         </tr>
                         <tr>
                             <td><strong>用户价值</strong></td>
-                            <td>专注高价值用户，而非追求规模</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ 硅谷精英</span></td>
-                            <td><span class="tag tag-red">✗ 600万泛用户</span></td>
-                            <td><span class="tag tag-orange">△ 企业客户</span></td>
-                            <td><span class="tag tag-red">✗ 追求规模</span></td>
+                            <td>专注高价值用户</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ 硅谷精英</span></td>
+                            <td><span class="tag tag-red">✗ 600万</span></td>
+                            <td><span class="tag tag-orange">△ 企业</span></td>
+                            <td><span class="tag tag-red">✗ 规模</span></td>
                             <td><span class="tag tag-orange">△ 开发者</span></td>
-                            <td><span class="tag tag-red">✗ 内部用户</span></td>
+                            <td><span class="tag tag-red">✗ 内部</span></td>
                         </tr>
                         <tr>
                             <td><strong>数据飞轮</strong></td>
-                            <td>用户反馈形成独特数据资产，影响模型厂商</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ 已形成</span></td>
-                            <td><span class="tag tag-red">✗ 未形成</span></td>
-                            <td><span class="tag tag-orange">△ 内部数据</span></td>
-                            <td><span class="tag tag-red">✗ 未形成</span></td>
-                            <td><span class="tag tag-red">✗ 未形成</span></td>
-                            <td><span class="tag tag-orange">△ 内部数据</span></td>
+                            <td>形成独特数据资产</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ 已形成</span></td>
+                            <td><span class="tag tag-red">✗</span></td>
+                            <td><span class="tag tag-orange">△ 内部</span></td>
+                            <td><span class="tag tag-red">✗</span></td>
+                            <td><span class="tag tag-red">✗</span></td>
+                            <td><span class="tag tag-orange">△ 内部</span></td>
                         </tr>
                         <tr>
                             <td><strong>模型能力</strong></td>
-                            <td>使用最优模型组合，不为成本妥协</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ 最优组合</span></td>
-                            <td><span class="tag tag-orange">△ 豆包+DS</span></td>
-                            <td><span class="tag tag-green">✓ 自研Qoder</span></td>
+                            <td>最优模型组合</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ 最优组合</span></td>
+                            <td><span class="tag tag-orange">△ 豆包</span></td>
+                            <td><span class="tag tag-green">✓ Qoder</span></td>
                             <td><span class="tag tag-orange">△ 文心</span></td>
                             <td><span class="tag tag-orange">△ 混元</span></td>
-                            <td><span class="tag tag-green">✓ 自研LongCat</span></td>
+                            <td><span class="tag tag-green">✓ LongCat</span></td>
                         </tr>
                         <tr>
                             <td><strong>盈利状态</strong></td>
-                            <td>快速实现盈亏平衡或盈利</td>
-                            <td style="background: rgba(16, 185, 129, 0.08);"><span class="tag tag-green">✓ 盈亏平衡</span></td>
-                            <td><span class="tag tag-red">✗ 持续亏损</span></td>
-                            <td><span class="tag tag-red">✗ 持续亏损</span></td>
-                            <td><span class="tag tag-red">✗ 持续亏损</span></td>
-                            <td><span class="tag tag-red">✗ 持续亏损</span></td>
-                            <td><span class="tag tag-red">✗ 持续亏损</span></td>
+                            <td>实现盈亏平衡</td>
+                            <td class="highlight-col"><span class="tag tag-green">✓ 盈亏平衡</span></td>
+                            <td><span class="tag tag-red">✗ 亏损</span></td>
+                            <td><span class="tag tag-red">✗ 亏损</span></td>
+                            <td><span class="tag tag-red">✗ 亏损</span></td>
+                            <td><span class="tag tag-red">✗ 亏损</span></td>
+                            <td><span class="tag tag-red">✗ 亏损</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Legend -->
-            <div style="display: flex; gap: 1.5rem; justify-content: center; margin: 1rem 0; font-size: 0.75rem; color: var(--text-secondary);">
-                <span><span class="tag tag-green">✓</span> 达标</span>
-                <span><span class="tag tag-orange">△</span> 部分达标</span>
-                <span><span class="tag tag-red">✗</span> 未达标</span>
-            </div>
-
-            <!-- Summary Stats -->
-            <div class="grid-3" style="margin-top: 1.5rem;">
-                <div class="card" style="text-align: center; border-color: rgba(16, 185, 129, 0.3);">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-green);">8/8</div>
-                    <div style="font-size: 0.75rem; color: var(--text-secondary);">Manus 达标项</div>
+            <div class="inline-stats">
+                <div class="inline-stat">
+                    <div class="inline-stat-value" style="color: var(--accent-green);">8/8</div>
+                    <div class="inline-stat-label">Manus 达标项</div>
                 </div>
-                <div class="card" style="text-align: center; border-color: rgba(245, 158, 11, 0.3);">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-orange);">2-3/8</div>
-                    <div style="font-size: 0.75rem; color: var(--text-secondary);">国内产品平均达标</div>
+                <div class="inline-stat">
+                    <div class="inline-stat-value" style="color: var(--accent-orange);">2/8</div>
+                    <div class="inline-stat-label">国内产品平均</div>
                 </div>
-                <div class="card" style="text-align: center; border-color: rgba(239, 68, 68, 0.3);">
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-red);">0/5</div>
-                    <div style="font-size: 0.75rem; color: var(--text-secondary);">实现盈利的产品</div>
+                <div class="inline-stat">
+                    <div class="inline-stat-value" style="color: var(--accent-red);">0/5</div>
+                    <div class="inline-stat-label">盈利产品数</div>
                 </div>
-            </div>
-
-            <div class="section-divider"><span>各产品核心差距</span></div>
-
-            <div class="grid-3">
-                <div class="product-card">
-                    <div class="product-header">
-                        <div><div class="product-name">Trae</div><div class="product-company">字节跳动</div></div>
-                        <div class="product-risk risk-medium">中风险</div>
-                    </div>
-                    <p class="product-issue">600万免费用户烧Token，模型非自研壁垒弱，转付费时大量流失</p>
-                    <div class="product-suggestion">建议：海外先验证付费模型</div>
-                </div>
-                <div class="product-card">
-                    <div class="product-header">
-                        <div><div class="product-name">通义灵码+Qoder</div><div class="product-company">阿里</div></div>
-                        <div class="product-risk risk-low">低风险</div>
-                    </div>
-                    <p class="product-issue">自研Qwen-Coder-Qoder模型领先，Quest自主编程能力强，但B端客单价被卷</p>
-                    <div class="product-suggestion">建议：发挥模型自研优势，专注高付费行业</div>
-                </div>
-                <div class="product-card">
-                    <div class="product-header">
-                        <div><div class="product-name">Comate</div><div class="product-company">百度</div></div>
-                        <div class="product-risk risk-medium">中风险</div>
-                    </div>
-                    <p class="product-issue">技术驱动非用户驱动，"设计稿转代码"不高频，59元/月难覆盖成本</p>
-                    <div class="product-suggestion">建议：找到高频场景</div>
-                </div>
-                <div class="product-card">
-                    <div class="product-header">
-                        <div><div class="product-name">CodeBuddy</div><div class="product-company">腾讯</div></div>
-                        <div class="product-risk risk-low">低风险</div>
-                    </div>
-                    <p class="product-issue">三形态最完整但增加复杂度，微信生态绑定是优势，变现待验证</p>
-                    <div class="product-suggestion">建议：深耕微信小程序生态</div>
-                </div>
-                <div class="product-card">
-                    <div class="product-header">
-                        <div><div class="product-name">CatPaw</div><div class="product-company">美团</div></div>
-                        <div class="product-risk risk-medium">中风险</div>
-                    </div>
-                    <p class="product-issue">后发劣势，内部95%渗透率不能证明外部PMF</p>
-                    <div class="product-suggestion">建议：明确外部PMF，差异化定位</div>
+                <div class="inline-stat">
+                    <div class="inline-stat-value" style="color: var(--accent-blue);">25%</div>
+                    <div class="inline-stat-label">整体达标率</div>
                 </div>
             </div>
         </section>
 
-        <!-- Chapter 3 -->
-        <section id="chapter3" class="chapter fade-in">
-            <div class="chapter-header">
-                <div class="chapter-number">03</div>
-                <div>
-                    <h2 class="chapter-title">造成问题的根本原因</h2>
-                    <p class="chapter-desc">为什么国内大厂会犯这些错误</p>
-                </div>
+        <!-- Section 3: Product Analysis -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">五款产品诊断：问题与建议</h2>
             </div>
 
-            <div class="cause-item">
-                <div class="cause-icon" style="background: rgba(239, 68, 68, 0.2);">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                </div>
-                <div class="cause-content">
-                    <h4>大厂KPI导向与AI产品逻辑冲突</h4>
-                    <p>追求"可汇报的指标"（用户数、市场份额），为了用户数而免费，不敢承认PMF不清晰</p>
-                </div>
-            </div>
-            <div class="cause-item">
-                <div class="cause-icon" style="background: rgba(245, 158, 11, 0.2);">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
-                </div>
-                <div class="cause-content">
-                    <h4>免费战的囚徒困境</h4>
-                    <p>字节免费→阿里跟进→腾讯跟进→所有人亏损→但没人敢先收费</p>
-                </div>
-            </div>
-            <div class="cause-item">
-                <div class="cause-icon" style="background: rgba(139, 92, 246, 0.2);">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
-                </div>
-                <div class="cause-content">
-                    <h4>移动互联网惯性思维</h4>
-                    <p>免费获客→补贴→规模→赢者通吃。但AI没有网络效应护城河，不会出现赢者通吃</p>
-                </div>
-            </div>
-            <div class="cause-item">
-                <div class="cause-icon" style="background: rgba(6, 182, 212, 0.2);">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                </div>
-                <div class="cause-content">
-                    <h4>内部孵化的结构性缺陷</h4>
-                    <p>没有生死压力，内部PMF≠外部PMF，资源过于充足没有"克制"压力</p>
-                </div>
-            </div>
-
-            <div class="quote-block">
-                <p class="quote-text">"AI是技术增量，没有新平台，所以没有蛮荒期。需要更强的经营能力。"</p>
-                <p class="quote-author">—— 季逸超</p>
-            </div>
-        </section>
-
-        <!-- Chapter 4 -->
-        <section id="chapter4" class="chapter fade-in">
-            <div class="chapter-header">
-                <div class="chapter-number">04</div>
-                <div>
-                    <h2 class="chapter-title">2026年预测与机会</h2>
-                    <p class="chapter-desc">判断风险与转型机会</p>
-                </div>
-            </div>
-
-            <div class="prediction-grid">
-                <div class="prediction-card">
-                    <div class="prediction-header">
-                        <div class="prediction-icon" style="background: rgba(59, 130, 246, 0.2);">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        </div>
-                        <div class="prediction-label" style="color: var(--accent-blue);">最可能的结局</div>
-                    </div>
-                    <ul class="prediction-list">
-                        <li>免费战持续但开始收缩</li>
-                        <li>通义灵码+Qoder占B端、CodeBuddy占微信生态</li>
-                        <li>无赢家通吃，各占细分市场</li>
-                        <li>2026年底仍没有一家盈利</li>
-                    </ul>
-                </div>
-                <div class="prediction-card optimistic">
-                    <div class="prediction-header">
-                        <div class="prediction-icon" style="background: rgba(16, 185, 129, 0.2);">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        </div>
-                        <div class="prediction-label" style="color: var(--accent-green);">最乐观的结局</div>
-                    </div>
-                    <ul class="prediction-list">
-                        <li>1-2家找到真正PMF</li>
-                        <li>成功转型高价值付费模式</li>
-                        <li>形成独特数据飞轮</li>
-                    </ul>
-                </div>
-                <div class="prediction-card pessimistic">
-                    <div class="prediction-header">
-                        <div class="prediction-icon" style="background: rgba(239, 68, 68, 0.2);">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                        </div>
-                        <div class="prediction-label" style="color: var(--accent-red);">最悲观的结局</div>
-                    </div>
-                    <ul class="prediction-list">
-                        <li>免费战持续消耗资源</li>
-                        <li>大厂收缩AI Coding投入</li>
-                        <li>被Cursor等海外产品抢占</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section-divider"><span>转型机会</span></div>
-
-            <div class="grid-4">
-                <div class="card">
-                    <div class="card-title"><div class="card-icon" style="background: var(--gradient-1); font-size: 0.75rem;">1</div>转向Agent Hours</div>
-                    <p style="color: var(--text-secondary); font-size: 0.8rem;">停止宣传用户数，统计任务完成率，识别高价值用户</p>
-                </div>
-                <div class="card">
-                    <div class="card-title"><div class="card-icon" style="background: var(--gradient-2); font-size: 0.75rem;">2</div>找到真正PMF</div>
-                    <p style="color: var(--text-secondary); font-size: 0.8rem;">微信小程序、企业代码评审、金融医疗垂直行业</p>
-                </div>
-                <div class="card">
-                    <div class="card-title"><div class="card-icon" style="background: var(--gradient-3); font-size: 0.75rem;">3</div>设计可持续定价</div>
-                    <p style="color: var(--text-secondary); font-size: 0.8rem;">按Agent Hours收费，高价值订阅（几百/几千元/月）</p>
-                </div>
-                <div class="card">
-                    <div class="card-title"><div class="card-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); font-size: 0.75rem;">4</div>出海验证</div>
-                    <p style="color: var(--text-secondary); font-size: 0.8rem;">海外用户付费意愿更强，避开国内免费战</p>
-                </div>
-            </div>
-
-            <div class="table-wrap" style="margin-top: 1.5rem;">
-                <table class="comparison-table">
-                    <thead><tr><th>产品</th><th>核心建议</th><th>机会方向</th></tr></thead>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>产品</th>
+                            <th>公司</th>
+                            <th>定价</th>
+                            <th>核心优势</th>
+                            <th>致命问题</th>
+                            <th>风险</th>
+                            <th>转型建议</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr><td>Trae</td><td>停止追求用户数，识别核心付费用户群</td><td><span class="tag tag-blue">海外验证付费模型</span></td></tr>
-                        <tr><td>通义灵码+Qoder</td><td>发挥模型自研优势，深耕B端高价值客户</td><td><span class="tag tag-green">Quest自主编程 + 高付费行业</span></td></tr>
-                        <tr><td>Comate</td><td>从技术驱动转向用户驱动</td><td><span class="tag tag-purple">找到高频场景</span></td></tr>
-                        <tr><td>CodeBuddy</td><td>深耕微信生态，建立生态绑定</td><td><span class="tag tag-cyan">小程序开发者独特价值</span></td></tr>
-                        <tr><td>CatPaw</td><td>明确外部PMF，差异化定位</td><td><span class="tag tag-orange">本地生活开发场景</span></td></tr>
+                        <tr>
+                            <td><strong>Trae</strong></td>
+                            <td>字节</td>
+                            <td><span class="tag tag-red">完全免费</span></td>
+                            <td>SOLO模式、600万用户、国际版</td>
+                            <td>模型非自研壁垒弱、无变现路径</td>
+                            <td><span class="tag tag-orange">中</span></td>
+                            <td>海外先验证付费模型</td>
+                        </tr>
+                        <tr>
+                            <td><strong>灵码+Qoder</strong></td>
+                            <td>阿里</td>
+                            <td><span class="tag tag-orange">限时免费</span></td>
+                            <td>自研Qoder模型、Quest自主编程</td>
+                            <td>B端客单价被卷至40万以下</td>
+                            <td><span class="tag tag-green">低</span></td>
+                            <td>发挥模型优势、专注高付费行业</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Comate</strong></td>
+                            <td>百度</td>
+                            <td><span class="tag tag-blue">59元/月</span></td>
+                            <td>多模态多智能体协同</td>
+                            <td>技术驱动非用户驱动、场景不高频</td>
+                            <td><span class="tag tag-orange">中</span></td>
+                            <td>找到高频场景、用户驱动</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CodeBuddy</strong></td>
+                            <td>腾讯</td>
+                            <td><span class="tag tag-orange">限时免费</span></td>
+                            <td>三形态（插件+IDE+CLI）最完整</td>
+                            <td>变现路径不清晰、复杂度高</td>
+                            <td><span class="tag tag-green">低</span></td>
+                            <td>深耕微信小程序生态</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CatPaw</strong></td>
+                            <td>美团</td>
+                            <td><span class="tag tag-blue">公测免费</span></td>
+                            <td>自研LongCat模型、内部95%渗透</td>
+                            <td>后发劣势、外部PMF未验证</td>
+                            <td><span class="tag tag-orange">中</span></td>
+                            <td>明确外部PMF、差异化定位</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p class="footer-quote">"我们都没有活着的权利，活着的权利是自己持续跑才能争取来的。"</p>
-        <p class="footer-text">2026年2月</p>
-    </footer>
+        <!-- Section 4: Root Causes -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">根本原因分析</h2>
+            </div>
 
-    <script>
-        // Scroll Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">原因</th>
+                            <th style="width: 40%;">表现</th>
+                            <th style="width: 35%;">后果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>大厂KPI导向</strong></td>
+                            <td>追求"可汇报指标"（用户数、市场份额）而非商业可持续性</td>
+                            <td>为了用户数而免费，不敢承认PMF不清晰</td>
+                        </tr>
+                        <tr>
+                            <td><strong>免费战囚徒困境</strong></td>
+                            <td>字节免费→阿里跟进→腾讯跟进→百度跟进</td>
+                            <td>所有人亏损，但没人敢先收费</td>
+                        </tr>
+                        <tr>
+                            <td><strong>移动互联网惯性</strong></td>
+                            <td>套用"免费→补贴→规模→赢者通吃"的成功经验</td>
+                            <td>AI没有网络效应护城河，不会赢者通吃</td>
+                        </tr>
+                        <tr>
+                            <td><strong>内部孵化缺陷</strong></td>
+                            <td>没有生死压力，大厂输血不需证明商业可持续</td>
+                            <td>内部PMF≠外部PMF，资源过于充足</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        // Active Nav
-        const sections = document.querySelectorAll('.chapter, #insights');
-        const navLinks = document.querySelectorAll('.nav-link');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => { if (scrollY >= section.offsetTop - 150) current = section.getAttribute('id'); });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
-            });
-        });
+            <div class="quote">
+                <div class="quote-text">"AI是技术增量，没有新平台，所以没有蛮荒期。需要更强的经营能力，不能靠'艺术家'式的偏执。"</div>
+                <div class="quote-author">—— 季逸超，Manus首席科学家</div>
+            </div>
+        </section>
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-    </script>
+        <!-- Section 5: Predictions -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">2026年预测与转型机会</h2>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">预测场景</th>
+                            <th style="width: 40%;">具体表现</th>
+                            <th style="width: 40%;">概率判断</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="tag tag-blue">最可能</span></td>
+                            <td>免费战持续但收缩，市场分化（灵码占B端、CodeBuddy占微信），无赢家通吃</td>
+                            <td>2026年底仍没有一家实现盈利，但开始试水付费</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-green">最乐观</span></td>
+                            <td>1-2家找到真正PMF，成功转型高价值付费模式</td>
+                            <td>形成独特数据飞轮，开始影响上游模型发展</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag tag-red">最悲观</span></td>
+                            <td>免费战持续消耗资源，大厂收缩AI Coding投入</td>
+                            <td>被Cursor等海外产品解决合规后抢占市场</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-container" style="margin-top: 1.5rem;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>转型方向</th>
+                            <th>具体措施</th>
+                            <th>适用产品</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>指标转型</strong></td>
+                            <td>从DAU转向Agent Hours、任务完成率、ARPU</td>
+                            <td>全部产品</td>
+                        </tr>
+                        <tr>
+                            <td><strong>找到真正PMF</strong></td>
+                            <td>微信小程序开发、企业代码评审、垂直行业（金融/医疗）</td>
+                            <td>CodeBuddy、灵码+Qoder</td>
+                        </tr>
+                        <tr>
+                            <td><strong>可持续定价</strong></td>
+                            <td>按Agent Hours收费、高价值订阅（几百/几千元/月）</td>
+                            <td>全部产品</td>
+                        </tr>
+                        <tr>
+                            <td><strong>出海验证</strong></td>
+                            <td>海外用户付费意愿更强，避开国内免费战</td>
+                            <td>Trae、灵码+Qoder</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <div class="conclusion-box">
+            <div class="conclusion-title">结论与建议</div>
+            <div class="conclusion-grid">
+                <div class="conclusion-item">
+                    <div class="conclusion-item-label">核心问题</div>
+                    <div class="conclusion-item-value">用互联网思维做AI产品</div>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-item-label">最大差距</div>
+                    <div class="conclusion-item-value">追求DAU而非Agent Hours</div>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-item-label">最优标杆</div>
+                    <div class="conclusion-item-value">Manus: 高价值用户 + 直接付费</div>
+                </div>
+                <div class="conclusion-item">
+                    <div class="conclusion-item-label">转型关键</div>
+                    <div class="conclusion-item-value">明确PMF + 可持续定价</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="report-footer">
+            <div class="footer-quote">"我们都没有活着的权利，活着的权利是自己持续跑才能争取来的。"</div>
+            <div class="footer-text">2026年2月</div>
+        </footer>
+    </div>
 </body>
 </html>
