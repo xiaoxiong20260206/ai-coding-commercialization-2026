@@ -9,46 +9,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0c;
-            --bg-secondary: #111114;
-            --bg-card: #18181c;
-            --bg-hover: #1f1f24;
-            --text-primary: #fafafa;
-            --text-secondary: #a1a1a8;
-            --text-muted: #71717a;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-hover: #f1f5f9;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
             --accent: #10b981;
-            --accent-light: rgba(16, 185, 129, 0.15);
-            --accent-red: #ef4444;
-            --accent-orange: #f59e0b;
-            --accent-blue: #3b82f6;
-            --border: rgba(255, 255, 255, 0.08);
-            --border-light: rgba(255, 255, 255, 0.04);
+            --accent-light: rgba(16, 185, 129, 0.1);
+            --accent-red: #dc2626;
+            --accent-orange: #ea580c;
+            --accent-blue: #2563eb;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Noto Sans SC', 'Inter', -apple-system, sans-serif;
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
             color: var(--text-primary);
             line-height: 1.8;
             font-size: 15px;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Container */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 40px 80px;
+            padding: 48px 40px 80px;
         }
 
         /* Header */
         .header {
             text-align: center;
-            padding-bottom: 60px;
+            padding-bottom: 48px;
             border-bottom: 1px solid var(--border);
-            margin-bottom: 60px;
+            margin-bottom: 48px;
         }
         .header-badge {
             display: inline-block;
@@ -57,19 +57,20 @@
             color: var(--accent);
             border-radius: 100px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.02em;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .header-title {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 700;
             line-height: 1.3;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             letter-spacing: -0.02em;
+            color: var(--text-primary);
         }
         .header-subtitle {
-            font-size: 17px;
+            font-size: 16px;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -79,21 +80,22 @@
         .summary-box {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-left: 3px solid var(--accent-red);
+            border-left: 4px solid var(--accent-red);
             border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 60px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+            box-shadow: var(--shadow);
         }
         .summary-label {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--accent-red);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
         .summary-label::before {
             content: '';
@@ -103,10 +105,11 @@
             border-radius: 50%;
         }
         .summary-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             line-height: 1.5;
             margin-bottom: 12px;
+            color: var(--text-primary);
         }
         .summary-title em {
             color: var(--accent-red);
@@ -123,7 +126,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
-            margin-bottom: 60px;
+            margin-bottom: 48px;
         }
         .stat-card {
             background: var(--bg-card);
@@ -131,6 +134,7 @@
             border-radius: 12px;
             padding: 24px;
             text-align: center;
+            box-shadow: var(--shadow);
         }
         .stat-value {
             font-size: 32px;
@@ -148,45 +152,50 @@
 
         /* Section */
         .section {
-            margin-bottom: 60px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow);
         }
         .section-header {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
+            gap: 14px;
+            margin-bottom: 28px;
         }
         .section-number {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             background: var(--accent);
-            color: #000;
+            color: #fff;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             flex-shrink: 0;
         }
         .section-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 600;
+            color: var(--text-primary);
         }
 
         /* Table */
         .table-wrap {
             overflow-x: auto;
-            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 10px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
         }
         th, td {
-            padding: 16px 20px;
+            padding: 14px 18px;
             text-align: left;
             border-bottom: 1px solid var(--border-light);
             font-size: 14px;
@@ -199,11 +208,11 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        th:first-child { border-radius: 11px 0 0 0; }
-        th:last-child { border-radius: 0 11px 0 0; }
+        th:first-child { border-radius: 9px 0 0 0; }
+        th:last-child { border-radius: 0 9px 0 0; }
         tr:last-child td { border-bottom: none; }
         tr:hover td { background: var(--bg-hover); }
-        td:first-child { font-weight: 500; }
+        td:first-child { font-weight: 500; color: var(--text-primary); }
         .highlight-col { background: var(--accent-light) !important; }
 
         /* Tags */
@@ -212,12 +221,12 @@
             padding: 4px 10px;
             border-radius: 6px;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
         }
-        .tag-green { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-        .tag-orange { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-        .tag-red { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-        .tag-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .tag-green { background: rgba(16, 185, 129, 0.12); color: #059669; }
+        .tag-orange { background: rgba(234, 88, 12, 0.12); color: #c2410c; }
+        .tag-red { background: rgba(220, 38, 38, 0.12); color: #b91c1c; }
+        .tag-blue { background: rgba(37, 99, 235, 0.12); color: #1d4ed8; }
 
         /* Two Column */
         .two-col {
@@ -227,17 +236,17 @@
             margin-top: 24px;
         }
         .col-box {
-            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
+            border-radius: 10px;
+            padding: 20px 24px;
+            background: var(--bg-secondary);
         }
         .col-box-title {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -248,7 +257,7 @@
             list-style: none;
         }
         .col-list li {
-            padding: 8px 0;
+            padding: 6px 0;
             color: var(--text-secondary);
             font-size: 14px;
             display: flex;
@@ -266,8 +275,8 @@
             display: flex;
             gap: 24px;
             justify-content: center;
-            padding: 16px;
-            background: var(--bg-card);
+            padding: 14px;
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 8px;
             margin-top: 20px;
@@ -286,7 +295,7 @@
             gap: 32px;
             justify-content: center;
             padding: 20px;
-            background: var(--bg-card);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 10px;
             margin-top: 24px;
@@ -306,14 +315,14 @@
 
         /* Quote */
         .quote {
-            background: var(--bg-card);
-            border-left: 3px solid var(--accent-blue);
-            border-radius: 0 12px 12px 0;
-            padding: 24px 28px;
-            margin: 32px 0;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 0 10px 10px 0;
+            padding: 20px 24px;
+            margin: 28px 0;
         }
         .quote-text {
-            font-size: 16px;
+            font-size: 15px;
             font-style: italic;
             color: var(--text-primary);
             line-height: 1.7;
@@ -321,25 +330,25 @@
         .quote-author {
             font-size: 13px;
             color: var(--text-muted);
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         /* Insight Box */
         .insight-box {
-            background: var(--bg-card);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-left: 3px solid var(--accent-orange);
-            border-radius: 12px;
-            padding: 28px;
-            margin-top: 32px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(234, 88, 12, 0.25);
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 10px;
+            padding: 24px 28px;
+            margin-top: 28px;
         }
         .insight-title {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--accent-orange);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -353,14 +362,15 @@
         }
         .insight-content {
             margin-top: 20px;
-            padding: 20px;
-            background: rgba(0,0,0,0.3);
+            padding: 18px 20px;
+            background: #fff;
+            border: 1px solid var(--border);
             border-radius: 8px;
         }
         .insight-content-title {
             font-size: 14px;
             color: var(--accent-orange);
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 8px;
         }
         .insight-content-text {
@@ -374,29 +384,30 @@
 
         /* Conclusion */
         .conclusion {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%);
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.25);
             border-radius: 16px;
-            padding: 32px;
-            margin-top: 48px;
+            padding: 28px 32px;
+            margin-top: 40px;
         }
         .conclusion-title {
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--accent);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .conclusion-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            gap: 14px;
         }
         .conclusion-item {
-            background: rgba(0,0,0,0.3);
+            background: #fff;
+            border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 20px;
+            padding: 18px;
         }
         .conclusion-item-label {
             font-size: 12px;
@@ -405,22 +416,23 @@
         }
         .conclusion-item-value {
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding-top: 48px;
-            margin-top: 60px;
+            padding-top: 40px;
+            margin-top: 48px;
             border-top: 1px solid var(--border);
         }
         .footer-quote {
-            font-size: 18px;
+            font-size: 17px;
             font-style: italic;
             color: var(--text-secondary);
             max-width: 500px;
-            margin: 0 auto 16px;
+            margin: 0 auto 14px;
             line-height: 1.6;
         }
         .footer-date {
@@ -428,84 +440,15 @@
             color: var(--text-muted);
         }
 
-        /* Tooltip */
-        .has-tip {
-            cursor: help;
-            border-bottom: 1px dashed var(--accent-blue);
-        }
-        .tip-box {
-            position: fixed;
-            width: 360px;
-            max-height: 380px;
-            overflow-y: auto;
-            padding: 20px 24px;
-            background: #1c1c24;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 0.15s, visibility 0.15s;
-            z-index: 9999;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-        .has-tip:hover .tip-box {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-        .tip-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .tip-section {
-            margin-bottom: 14px;
-        }
-        .tip-section:last-child { margin-bottom: 0; }
-        .tip-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--accent-blue);
-            margin-bottom: 6px;
-        }
-        .tip-text {
-            color: #e8e8ea;
-        }
-        .tip-list {
-            list-style: none;
-            color: #e8e8ea;
-        }
-        .tip-list li {
-            padding: 4px 0;
-            padding-left: 16px;
-            position: relative;
-        }
-        .tip-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-blue);
-        }
-        .tip-box::-webkit-scrollbar { width: 5px; }
-        .tip-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .container { padding: 40px 20px 60px; }
-            .header-title { font-size: 28px; }
+            .container { padding: 32px 20px 60px; }
+            .header-title { font-size: 24px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .two-col { grid-template-columns: 1fr; }
             .conclusion-grid { grid-template-columns: repeat(2, 1fr); }
             .legend { flex-wrap: wrap; justify-content: center; }
-            .tip-box { display: none !important; }
+            .section { padding: 24px; }
         }
     </style>
 </head>
@@ -881,8 +824,8 @@
             <div class="insight-box">
                 <div class="insight-title">深度追问：为什么内部没服务好就急着商业化？</div>
                 
-                <div class="table-wrap" style="margin: 0; border: none; background: transparent;">
-                    <table style="background: rgba(0,0,0,0.2);">
+                <div class="table-wrap" style="border: none; margin: 0;">
+                    <table>
                         <thead>
                             <tr>
                                 <th style="width: 20%;">原因</th>
